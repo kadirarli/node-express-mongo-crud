@@ -1,0 +1,26 @@
+services:
+  app:
+    image: node:18-alpine
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+    networks:
+      - node-mongo-app
+    depends_on:
+      - mongodb 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      - node-mongo-app
+    volumes:
+      - db:/data/db
+networks:
+  node-mongo-app:
+    driver: bridge
+volumes:
+  db:

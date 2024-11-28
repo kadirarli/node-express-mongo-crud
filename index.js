@@ -16,13 +16,14 @@ app.use("/api/products", productRoute);
 
 
 app.get("/", (req, res) => {
-  res.send("Hello from Node API Server Updated");
+  res.send("Hello from Node API Server");
 });
 
+const url = "mongodb://app-mongodb-1:27017/node-mongo-db";
 
 mongoose
   .connect(
-    "mongodb+srv://haris2iftikhar:GClTzr15XhkjvN6k@backenddb.nrurtot.mongodb.net/Node-API?retryWrites=true&w=majority"
+    url
   )
   .then(() => {
     console.log("Connected to database!");
